@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
+const upload = require('../middleware/upload');
 
 // Get all products
 router.get('/', async (req, res) => {
@@ -13,21 +14,28 @@ router.get('/', async (req, res) => {
 });
 
 // Create a new product
-router.post('/', async (req, res) => {
-  const product = new Product({
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    stock: req.body.stock,
-    imageUrl: req.body.imageUrl
-  });
+router.post('/', upload.single('image'), async (req, res) => {
+  console.log('Request Body:', req.body);
+  console.log('File:', req.file);
+  
+  const { name, description, price } = req.body;
+  const image = req.file ? req.file.filename : null;
 
   try {
-    const newProduct = await product.save();
-    res.status(201).json(newProduct);
+    const newProduct = new Product({
+      name,
+      description,
+      price,
+      image,
+    });
+
+    const product = await newProduct.save();
+    res.json(product);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    console.error(err.message);
+    res.status(500).send('Server error');
   }
 });
+
 
 module.exports = router;

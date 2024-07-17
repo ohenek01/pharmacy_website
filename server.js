@@ -20,7 +20,8 @@ app.get('/', (req, res) => {
   res.send('Pharmacy API');
 });
 
-app.use(express.json({ extended: false }));
+app.use(express.json({ extended: true }));
+app.use('./middleware/uploads', express.static('uploads')); // Serve static files from the uploads folder
 app.use('/api/products', require('./routes/products'));
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
