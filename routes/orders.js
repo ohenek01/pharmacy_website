@@ -1,45 +1,56 @@
+// routes/orders.js
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
-const auth = require('../middleware/auth');
+const auth = require('../middleware/auth'); // Correct import path for auth
+const { check, validationResult } = require('express-validator');
 
-// Middleware to protect routes
-function auth(req, res, next) {
-  const token = req.header('Authorization').replace('Bearer ', '');
-  if (!token) return res.status(401).json({ message: 'Unauthorized' });
+// Place an order
+router.post(
+  '/',
+  [auth, check('items', 'Items are required').not().isEmpty()],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
-  try {
-    const decoded = jwt.verify(token, 'your_jwt_secret');
-    req.user = decoded;
-    next();
-  } catch (err) {
-    res.status(401).json({ message: 'Invalid token' });
+    const { items } = req.body;
+
+    try {
+      const newOrder = new Order({
+        user: req.user.id,
+        items
+      });
+
+      const order = await newOrder.save();
+
+      res.json(order);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
   }
-}
-
-// Create a new order
-router.post('/', auth, async (req, res) => {
-  try {
-    const { products, totalAmount } = req.body;
-    const order = new Order({
-      user: req.user.userId,
-      products,
-      totalAmount
-    });
-    await order.save();
-    res.status(201).json(order);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+);
 
 // Get orders for a user
-router.get('/', auth, async (req, res) => {
+router.get('/user-orders', auth, async (req, res) => {
   try {
-    const orders = await Order.find({ user: req.user.userId }).populate('products.product');
+    const orders = await Order.find({ user: req.user.id }).populate('products.product');
     res.json(orders);
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+});
+
+// Get all orders (Admin)
+router.get('/', auth, async (req, res) => {
+  try {
+    const orders = await Order.find().populate('user', ['email']);
+    res.json(orders);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
   }
 });
 

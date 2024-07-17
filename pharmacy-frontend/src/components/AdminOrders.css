@@ -1,0 +1,20 @@
+.admin-orders-container {
+    padding: 20px;
+  }
+  
+  .order-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  h1, h2 {
+    color: #007bff;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
