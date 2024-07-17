@@ -9,7 +9,7 @@ const About = () => {
         <div className="brand">Pharmacy</div>
         <ul className="nav-links">
           <li>
-            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/home" className="nav-link">Home</Link>
           </li>
           <li>
             <Link to="/products" className="nav-link">Products</Link>
