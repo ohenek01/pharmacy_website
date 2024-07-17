@@ -3,7 +3,8 @@ import { useCart } from './context/cartContext';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './Home.css'
-import './ProductList.css'
+import './Productdetails.css'
+import './Cart.css'
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useCart();
@@ -59,14 +60,16 @@ const Cart = () => {
       <ul>
         {cart.map(item => (
           <li key={item.id}>
-            <img src={item.image} alt={item.name} />
             {item.title} - {item.quantity} x ${item.price}
-            <button onClick={() => removeFromCart(item.id)}>Remove</button>
+            <button onClick={() => removeFromCart(item.id)} className='rvmbtn'>Remove</button>
+            <li>
+            <img src={item.image} alt={item.name} className='product-images'/>
+            </li>
           </li>
         ))}
       </ul>
       <h2>Total: ${getTotalAmount()}</h2>
-      <button onClick={handleCheckout}>Checkout</button>
+      <button onClick={handleCheckout} className='checkoutbtn'>Checkout</button>
     </div>
   );
 };

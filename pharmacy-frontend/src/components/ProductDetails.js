@@ -53,8 +53,8 @@ const ProductDetails = () => {
         <p className="product-description">{product.description}</p>
         <p className="product-price">${product.price}</p>
         <img src={product.image} alt={product.title} className="product-image" />
-        <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min="1" />
-        <button onClick={() => addToCart(product, quantity)}>Add to Cart</button>
+        <input className='quantity-box' type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min="1" />
+        <button onClick={() => addToCart(product, quantity)} className='add-to-cart-btn'>Add to Cart</button>
       </div>
     </div>
   );
