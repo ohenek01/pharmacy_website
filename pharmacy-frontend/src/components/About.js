@@ -6,19 +6,19 @@ const About = () => {
   return (
     <div className='container'>
          <nav className="navbar">
-        <div className="brand">Pharmacy</div>
+        <div className="brand"> License Over the Counter Pharmacy</div>
         <ul className="nav-links">
+        <li>
+            <Link to="/login" className="nav-link">Login</Link>
+          </li>
           <li>
             <Link to="/home" className="nav-link">Home</Link>
           </li>
           <li>
-            <Link to="/products" className="nav-link">Products</Link>
+            <Link to="/products" className="nav-link">Drugs</Link>
           </li>
           <li>
             <Link to="/about" className="nav-link">About</Link>
-          </li>
-          <li>
-            <Link to="/contact" className="nav-link">Contact</Link>
           </li>
           <li>
             <Link to="/cart" className="nav-link">Cart</Link>

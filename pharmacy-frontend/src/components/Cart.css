@@ -1,6 +1,13 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
 .rvmbtn {
     display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 1.5rem;
   background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
   font-size: 0.8rem;
@@ -10,6 +17,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: background 0.3s, box-shadow 0.3s;
+  margin-left: 20px;
 }
 .rvmbtn:hover {
     background: linear-gradient(135deg, #0056b3, #003a7d);

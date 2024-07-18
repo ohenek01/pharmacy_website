@@ -1,0 +1,112 @@
+/* Checkout Styles */
+.checkout {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+  }
+  
+  .checkout-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .checkout-items {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .checkout-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-item-image {
+    width: 100px;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .checkout-item-details {
+    margin-left: 1.5rem;
+  }
+  
+  .checkout-item-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .checkout-item-price,
+  .checkout-item-quantity {
+    font-size: 1.25rem;
+    color: #6c757d;
+  }
+  
+  .checkout-summary {
+    text-align: right;
+  }
+  
+  .checkout-total {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  
+  .checkout-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #003a7d);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .checkout-btn:active {
+    background: linear-gradient(135deg, #003a7d, #00224d);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .empty-cart {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #6c757d;
+    margin-top: 2rem;
+  }
+
+  .rvmbtn1 {
+    display: inline-block;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+  margin-left: 20px;
+}
+.rvmbtn1:hover {
+    background: linear-gradient(135deg, #0056b3, #003a7d);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.rvmbtn1:active {
+    background: linear-gradient(135deg, #003a7d, #00224d);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
