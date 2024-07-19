@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import './Home.css'
 import './Productdetails.css'
 import './Cart.css'
+import './CartContext';
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useCart();
@@ -62,9 +63,9 @@ const Cart = () => {
       <h1>Cart</h1>
       <ul>
         {cart.map(item => (
-          <li key={item.id}>
+          <li key={item._id}>
             {item.title} - {item.quantity} x ${item.price}
-            <button onClick={() => removeFromCart(item.id)} className='rvmbtn'>Remove</button>
+            <button onClick={() => removeFromCart(item._id)} className='rvmbtn'>Remove</button>
             <li>
             <img src={item.image} alt={item.name} className='product-images'/>
             </li>
