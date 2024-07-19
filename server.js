@@ -24,6 +24,12 @@ app.get('/', (req, res) => {
   res.send('Pharmacy API');
 });
 
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store');
+  next();
+});
+
+
 app.use(express.json({ extended: true }));
 app.use('./middleware/uploads', express.static('uploads')); // Serve static files from the uploads folder
 app.use('/api/products', require('./routes/products'));
