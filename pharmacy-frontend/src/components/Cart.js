@@ -1,11 +1,12 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import { useCart } from './context/cartContext';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './Home.css'
 import './Productdetails.css'
 import './Cart.css'
-import './CartContext';
+import './CartContext'
+
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useCart();
@@ -37,6 +38,14 @@ const Cart = () => {
     }
   };
 
+  useEffect(() => {
+      const data= window.localStorage.getItem('cart');
+      console.log('data', data)
+  }, [])
+
+  useEffect(() => {
+      window.localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
 
   return (
     <div>
@@ -60,7 +69,8 @@ const Cart = () => {
           </li>
         </ul>
       </nav>
-      <h1>Cart</h1>
+      <div className='Container'>
+      <h1 className='Cart'>Cart</h1>
       <ul>
         {cart.map(item => (
           <li key={item._id}>
@@ -74,6 +84,7 @@ const Cart = () => {
       </ul>
       <h2>Total: ${getTotalAmount()}</h2>
       <button onClick={handleCheckout} className='checkoutbtn'>Checkout</button>
+    </div>
     </div>
   );
 };

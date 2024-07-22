@@ -1,22 +1,21 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-
 const CartContext = createContext();
 
-export const useCart = () => {
-  return useContext(CartContext);
-};
+export const useCart = () => useContext(CartContext);
 
-export const CartProvider = ({ children }) => {
+const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
+  // Load cart from local storage when the component mounts
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem('cart'));
+    const savedCart = localStorage.getItem('cart');
     if (savedCart) {
-      setCart(savedCart);
+      setCart(JSON.parse(savedCart));
     }
   }, []);
 
+  // Save cart to local storage whenever it changes
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
@@ -25,8 +24,8 @@ export const CartProvider = ({ children }) => {
     setCart((prevCart) => [...prevCart, item]);
   };
 
-  const removeFromCart = (id) => {
-    setCart((prevCart) => prevCart.filter(item => item.id !== id));
+  const removeFromCart = (itemId) => {
+    setCart((prevCart) => prevCart.filter(item => item._id !== itemId));
   };
 
   const clearCart = () => {
@@ -39,3 +38,5 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+export default CartProvider;

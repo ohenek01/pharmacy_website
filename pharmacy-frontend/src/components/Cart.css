@@ -3,6 +3,16 @@ body, html {
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
+  height: 100%;
+}
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Ensure the container takes at least the full height of the viewport */
+  text-align: center;
 }
 
 .rvmbtn {
@@ -49,3 +59,21 @@ body, html {
     background: linear-gradient(135deg, #003a7d, #00224d);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
+  .Cart {
+    font-size: 50px;
+  }
+  @media (max-width: 480px) {
+    .navbar .brand {
+      font-size: 1.2rem;
+    }
+  
+    .product-images {
+      max-width: 60px;
+    }
+  
+    .rvmbtn, .checkoutbtn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+    }
+  }
+ 

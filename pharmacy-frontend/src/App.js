@@ -13,6 +13,7 @@ import SignUp from './components/SignUp';
 import Checkout from './components/CheckoutScreen';
 
 
+
 function App() {
   return (
     <CartProvider>
@@ -32,7 +33,8 @@ function App() {
         </Routes>
       </div>
     </Router>
-    </CartProvider>
+    </CartProvider>,
+    document.getElementById('root')
   );
 }
 
