@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import './Home.css'
 import './Productdetails.css'
 import './Cart.css'
-import './CartContext'
+
 
 
 const Cart = () => {
@@ -38,14 +38,7 @@ const Cart = () => {
     }
   };
 
-  useEffect(() => {
-      const data= window.localStorage.getItem('cart');
-      console.log('data', data)
-  }, [])
 
-  useEffect(() => {
-      window.localStorage.setItem('cart', JSON.stringify(cart))
-  }, [cart])
 
   return (
     <div>

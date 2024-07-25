@@ -33,8 +33,8 @@ function App() {
         </Routes>
       </div>
     </Router>
-    </CartProvider>,
-    document.getElementById('root')
+    </CartProvider>
+    
   );
 }
 
