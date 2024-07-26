@@ -15,14 +15,15 @@ router.post('/register', [
   check('name', 'Name is required').not().isEmpty(),
   check('email', 'Please include a valid email').isEmail(),
   check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
-  check('username', 'Username is required').not().isEmpty() // Add this validation
+  check('username', 'Username is required').not().isEmpty()
 ], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
+    console.log('Validation errors:', errors.array());
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { name, email, password, username } = req.body; // Include username
+  const { name, email, password, username } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -31,7 +32,7 @@ router.post('/register', [
       return res.status(400).json({ msg: 'User already exists' });
     }
 
-    user = new User({ name, email, password, username }); // Include username
+    user = new User({ name, email, password, username });
 
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
@@ -54,6 +55,7 @@ router.post('/register', [
     res.status(500).send('Server error');
   }
 });
+
 
 // Create the email transporter
 const transporter = nodemailer.createTransport({

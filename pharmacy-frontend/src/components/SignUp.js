@@ -12,12 +12,15 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload = { name, email, password, username };
+    console.log('Sending payload:', payload);  // Log the payload
+
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/register', { name, email, password, username });
+      const res = await axios.post('http://localhost:3000/api/auth/register', payload);
       localStorage.setItem('token', res.data.token);
       navigate('/');
     } catch (err) {
-      console.error('Registration failed', err);
+      console.error('Registration failed', err.response ? err.response.data : err.message);  // Enhanced error logging
     }
   };
 
@@ -76,7 +79,7 @@ const SignUp = () => {
         />
         <button type="submit">Sign Up</button>
         <div className="login-links">
-          <Link to="/login">Login</Link>
+          <Link to="/">Login</Link>
         </div>
       </form>
     </div>

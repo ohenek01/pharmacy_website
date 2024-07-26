@@ -10,8 +10,12 @@ import AdminOrders from './components/AdminOrders';
 import Cart from './components/Cart';
 import { CartProvider } from './components/context/cartContext';
 import SignUp from './components/SignUp';
+
 import Checkout from './components/CheckoutScreen';
 
+
+=======
+import ProtectedRoute from './components/ProtectedRoutes';
 
 
 function App() {
@@ -20,7 +24,11 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+
           <Route path="/" element={<Home />} />
+=======
+          <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/about" element={<About />} />
