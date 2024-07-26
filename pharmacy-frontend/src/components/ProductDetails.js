@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { useCart } from './context/cartContext';
-import './Productdetails.css'; // Importing the CSS file for styling
+import './Productdetails.css'; 
 import './Home.css'
 
 const ProductDetails = () => {
@@ -14,11 +14,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-
         const res = await axios.get(`http://localhost:3000/api/products/${id}`);
-=======
-        const res = await axios.get(`https://localhost:3000/api/products/${id}`);
-
         setProduct(res.data);
       } catch (error) {
         console.error("Error fetching the product data:", error);
@@ -61,7 +57,7 @@ const ProductDetails = () => {
         <h1 className="product-title">{product.title}</h1>
         <p className="product-description">{product.description}</p>
         <p className="product-price">${product.price}</p>
-        <img src={`http://localhost:3000/images/${product.image}`} alt={product.title} className="product-image" />
+        <img src={product.image} alt={product.title} className="product-image" />
         <input className='quantity-box' type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min="1" />
         <button onClick={() => addToCart(product, quantity)} className='add-to-cart-btn'>Add to Cart</button>
       </div>
