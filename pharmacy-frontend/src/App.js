@@ -14,7 +14,6 @@ import SignUp from './components/SignUp';
 import Checkout from './components/CheckoutScreen';
 
 
-=======
 import ProtectedRoute from './components/ProtectedRoutes';
 
 
