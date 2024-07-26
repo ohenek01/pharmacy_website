@@ -14,7 +14,11 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+
+        const res = await axios.get(`http://localhost:3000/api/products/${id}`);
+=======
         const res = await axios.get(`https://localhost:3000/api/products/${id}`);
+
         setProduct(res.data);
       } catch (error) {
         console.error("Error fetching the product data:", error);
@@ -23,24 +27,29 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  if (!product) return <div>Loading...</div>;
+  if (!product) return ( 
+    <div className="loading-container">
+    <div className="loading-spinner"></div>
+    <div className="loading-message">Loading...</div>
+  </div>
 
+)
   return (
     <div className="container">
       <nav className="navbar">
-        <div className="brand">Pharmacy</div>
+        <div className="brand"> License Over the Counter Pharmacy</div>
         <ul className="nav-links">
+        <li>
+            <Link to="/login" className="nav-link">Login</Link>
+          </li>
           <li>
             <Link to="/" className="nav-link">Home</Link>
           </li>
           <li>
-            <Link to="/products" className="nav-link">Products</Link>
+            <Link to="/products" className="nav-link">Drugs</Link>
           </li>
           <li>
             <Link to="/about" className="nav-link">About</Link>
-          </li>
-          <li>
-            <Link to="/contact" className="nav-link">Contact</Link>
           </li>
           <li>
             <Link to="/cart" className="nav-link">Cart</Link>
@@ -52,9 +61,9 @@ const ProductDetails = () => {
         <h1 className="product-title">{product.title}</h1>
         <p className="product-description">{product.description}</p>
         <p className="product-price">${product.price}</p>
-        <img src={product.image} alt={product.title} className="product-image" />
-        <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min="1" />
-        <button onClick={() => addToCart(product, quantity)}>Add to Cart</button>
+        <img src={`http://localhost:3000/images/${product.image}`} alt={product.title} className="product-image" />
+        <input className='quantity-box' type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min="1" />
+        <button onClick={() => addToCart(product, quantity)} className='add-to-cart-btn'>Add to Cart</button>
       </div>
     </div>
   );

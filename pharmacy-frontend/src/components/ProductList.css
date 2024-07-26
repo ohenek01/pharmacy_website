@@ -116,4 +116,46 @@ body, html {
     padding: 1rem;
     margin-top: auto;
   }
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+  }
+  
+  .loading-spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #007bff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-right: 20px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loading-message {
+    font-size: 1.5rem;
+    color: #007bff;
+    font-family: Arial, sans-serif;
+  }
+  @media (max-width: 480px) {
+    .navbar .brand {
+      font-size: 1.2rem;
+    }
+  
+    .product-images {
+      max-width: 60px;
+    }
+  
+    .rvmbtn, .checkoutbtn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+    }
+  }
   

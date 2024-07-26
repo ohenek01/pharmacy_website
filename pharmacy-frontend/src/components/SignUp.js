@@ -18,13 +18,34 @@ const SignUp = () => {
     try {
       const res = await axios.post('http://localhost:3000/api/auth/register', payload);
       localStorage.setItem('token', res.data.token);
-      navigate('/home');
+      navigate('/');
     } catch (err) {
       console.error('Registration failed', err.response ? err.response.data : err.message);  // Enhanced error logging
     }
   };
 
   return (
+    <div className="container">
+       <nav className="navbar">
+        <div className="brand"> License Over the Counter Pharmacy</div>
+        <ul className="nav-links">
+        <li>
+            <Link to="/login" className="nav-link">Login</Link>
+          </li>
+          <li>
+            <Link to="/" className="nav-link">Home</Link>
+          </li>
+          <li>
+            <Link to="/products" className="nav-link">Drugs</Link>
+          </li>
+          <li>
+            <Link to="/about" className="nav-link">About</Link>
+          </li>
+          <li>
+            <Link to="/cart" className="nav-link">Cart</Link>
+          </li>
+        </ul>
+      </nav>
     <div className="login-container">
       <form onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
@@ -61,6 +82,7 @@ const SignUp = () => {
           <Link to="/">Login</Link>
         </div>
       </form>
+    </div>
     </div>
   );
 };

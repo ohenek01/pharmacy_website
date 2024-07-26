@@ -1,13 +1,18 @@
 import React from 'react';
 import { useCart } from './context/cartContext';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link,   } from 'react-router-dom';
 import './Home.css'
-import './ProductList.css'
+import './Productdetails.css'
+import './Cart.css'
+
+
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useCart();
   const navigate = useNavigate();
+ 
+  
 
   const getTotalAmount = () => {
     return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -15,6 +20,7 @@ const Cart = () => {
 
   const handleCheckout = async () => {
     const token = localStorage.getItem('token');
+    navigate('/checkout')
     if (!token) {
       return navigate('/login');
     }
@@ -32,41 +38,47 @@ const Cart = () => {
       console.error('Error placing order:', error);
     }
   };
+ 
+   
 
   return (
     <div>
       <nav className="navbar">
-        <div className="brand">Pharmacy</div>
+        <div className="brand"> License Over the Counter Pharmacy</div>
         <ul className="nav-links">
+        <li>
+            <Link to="/login" className="nav-link">Login</Link>
+          </li>
           <li>
             <Link to="/" className="nav-link">Home</Link>
           </li>
           <li>
-            <Link to="/products" className="nav-link">Products</Link>
+            <Link to="/products" className="nav-link">Drugs</Link>
           </li>
           <li>
             <Link to="/about" className="nav-link">About</Link>
-          </li>
-          <li>
-            <Link to="/contact" className="nav-link">Contact</Link>
           </li>
           <li>
             <Link to="/cart" className="nav-link">Cart</Link>
           </li>
         </ul>
       </nav>
-      <h1>Cart</h1>
+      <div className='Container'>
+      <h1 className='Cart'>Cart</h1>
       <ul>
         {cart.map(item => (
-          <li key={item.id}>
-            <img src={item.image} alt={item.name} />
+          <li key={item._id}>
             {item.title} - {item.quantity} x ${item.price}
-            <button onClick={() => removeFromCart(item.id)}>Remove</button>
+            <button onClick={() => removeFromCart(item._id)} className='rvmbtn'>Remove</button>
+            <li>
+            <img src={item.image} alt={item.name} className='product-images'/>
+            </li>
           </li>
         ))}
       </ul>
       <h2>Total: ${getTotalAmount()}</h2>
-      <button onClick={handleCheckout}>Checkout</button>
+      <button onClick={handleCheckout} className='checkoutbtn'>Checkout</button>
+    </div>
     </div>
   );
 };

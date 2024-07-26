@@ -115,3 +115,17 @@ html {
   padding: 1rem;
   margin-top: auto;
 }
+@media (max-width: 480px) {
+  .navbar .brand {
+    font-size: 1.2rem;
+  }
+
+  .product-images {
+    max-width: 60px;
+  }
+
+  .rvmbtn, .checkoutbtn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
