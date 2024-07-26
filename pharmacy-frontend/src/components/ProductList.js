@@ -8,7 +8,7 @@ const ProductList = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await axios.get('https://fakestoreapi.com/products');
+      const res = await axios.get('http://localhost:3000/api/products');
       setProducts(res.data);
     };
     fetchProducts();

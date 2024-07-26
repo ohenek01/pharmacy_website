@@ -14,7 +14,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
+        const res = await axios.get(`http://localhost:3000/api/products/${id}`);
         setProduct(res.data);
       } catch (error) {
         console.error("Error fetching the product data:", error);
@@ -57,7 +57,7 @@ const ProductDetails = () => {
         <h1 className="product-title">{product.title}</h1>
         <p className="product-description">{product.description}</p>
         <p className="product-price">${product.price}</p>
-        <img src={product.image} alt={product.title} className="product-image" />
+        <img src={`http://localhost:3000/images/${product.image}`} alt={product.title} className="product-image" />
         <input className='quantity-box' type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min="1" />
         <button onClick={() => addToCart(product, quantity)} className='add-to-cart-btn'>Add to Cart</button>
       </div>

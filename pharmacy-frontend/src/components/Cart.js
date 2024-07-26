@@ -1,7 +1,7 @@
-import React,{ useEffect } from 'react';
+import React from 'react';
 import { useCart } from './context/cartContext';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link,   } from 'react-router-dom';
 import './Home.css'
 import './Productdetails.css'
 import './Cart.css'
@@ -11,6 +11,7 @@ import './Cart.css'
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useCart();
   const navigate = useNavigate();
+ 
   
 
   const getTotalAmount = () => {
@@ -37,8 +38,8 @@ const Cart = () => {
       console.error('Error placing order:', error);
     }
   };
-
-
+ 
+   
 
   return (
     <div>
