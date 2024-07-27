@@ -8,27 +8,32 @@ const ProductList = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await axios.get('http://localhost:3000/api/products');
-      setProducts(res.data);
+      try {
+        const res = await axios.get('http://localhost:3000/api/products');
+        setProducts(res.data);
+      } catch (error) {
+        console.error("Error fetching the product data:", error);
+      }
     };
     fetchProducts();
   }, []);
 
-  if (!products) return ( 
-    <div className="loading-container">
-    <div className="loading-spinner"></div>
-    <div className="loading-message">Loading...</div>
-  </div>
-
-)
+  if (!products || products.length === 0) {
+    return ( 
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <div className="loading-message">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
       {/* Navigation Bar */}
       <nav className="navbar">
-        <div className="brand"> License Over the Counter Pharmacy</div>
+        <div className="brand">License Over the Counter Pharmacy</div>
         <ul className="nav-links">
-        <li>
+          <li>
             <Link to="/login" className="nav-link">Login</Link>
           </li>
           <li>
@@ -51,8 +56,8 @@ const ProductList = () => {
         <h1>Products</h1>
         <ul className="product-list">
           {products.map(product => (
-            <li key={product._id || 'default-id'} className="product-item">
-              <Link to={`/products/${product._id}`} className="product-link">
+            <li key={product.id} className="product-item">
+              <Link to={`/products/${product.id}`} className="product-link">
                 <img src={`http://localhost:3000/images/${product.image}`} alt={product.title} className="product-image" />
                 <div className="product-info">
                   <h2 className="product-title">{product.name}</h2>

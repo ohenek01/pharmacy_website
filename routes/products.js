@@ -13,6 +13,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get single product by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Create a new product
 router.post('/', upload.single('image'), async (req, res) => {
   console.log('Request Body:', req.body);
@@ -36,6 +49,5 @@ router.post('/', upload.single('image'), async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-
 
 module.exports = router;
