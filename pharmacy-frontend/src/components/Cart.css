@@ -67,7 +67,7 @@ body, html {
       font-size: 1.2rem;
     }
   
-    .product-images {
+    .product-photos {
       max-width: 60px;
     }
   
@@ -76,4 +76,12 @@ body, html {
       font-size: 0.8rem;
     }
   }
+  .product-photos {
+    max-width: 400px;
+    height: 300px;
+    list-style-type: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+ 
  

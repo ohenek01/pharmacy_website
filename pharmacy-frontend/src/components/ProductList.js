@@ -56,8 +56,8 @@ const ProductList = () => {
         <h1>Products</h1>
         <ul className="product-list">
           {products.map(product => (
-            <li key={product.id} className="product-item">
-              <Link to={`/products/${product.id}`} className="product-link">
+            <li key={product._id} className="product-item">
+              <Link to={`/products/${product._id}`} className="product-link">
                 <img src={`http://localhost:3000/images/${product.image}`} alt={product.title} className="product-image" />
                 <div className="product-info">
                   <h2 className="product-title">{product.name}</h2>

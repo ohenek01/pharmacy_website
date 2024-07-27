@@ -71,7 +71,7 @@ const Cart = () => {
             {item.title} - {item.quantity} x ${item.price}
             <button onClick={() => removeFromCart(item._id)} className='rvmbtn'>Remove</button>
             <li>
-            <img src={item.image} alt={item.name} className='product-images'/>
+            <img src={`http://localhost:3000/images/${item.image}`} alt={item.name} className='product-photos'/>
             </li>
           </li>
         ))}

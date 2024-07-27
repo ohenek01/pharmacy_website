@@ -39,8 +39,8 @@ const Checkout = () => {
         <ul className="checkout-items">
           {cart.map((item, index) => (
             <li key={index} className="checkout-item">
-              <img src={item.image} alt={item.title} className="checkout-item-image" />
-              <button onClick={() => removeFromCart(item.id)} className='rvmbtn1'>Remove</button>
+              <img src={`http://localhost:3000/images/${item.image}`} alt={item.title} className="checkout-item-image" />
+              <button onClick={() => removeFromCart(item._id)} className='rvmbtn1'>Remove</button>
               <div className="checkout-item-details">
                 <h2 className="checkout-item-title">{item.title}</h2>
                 <p className="checkout-item-price">${item.price}</p>
