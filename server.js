@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const orderRoutes = require('./routes/orders');
+const productRoutes = require('./routes/products');
 require('dotenv').config();
 const path = require('path');
 
@@ -17,7 +18,7 @@ app.use(cors({
   credentials: true, // Include if your API uses cookies
 }));
 
-app.use('/images', express.static(path.join(__dirname, 'DRUGS')));
+app.use('/images', express.static(path.join(__dirname, 'DRUGS'))); // Serve images from DRUGS folder
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
@@ -32,10 +33,11 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.json());
+app.use('/uploads', express.static('uploads')); // Serve static files from the uploads folder
 
-app.use(express.json({ extended: true }));
-app.use('./middleware/uploads', express.static('uploads')); // Serve static files from the uploads folder
-app.use('/api/products', require('./routes/products'));
+// Routes
+app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
 
