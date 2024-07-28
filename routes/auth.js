@@ -6,6 +6,7 @@ const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const auth = require('../middleware/auth');
 require('dotenv').config();
 
 const router = express.Router();
@@ -171,6 +172,19 @@ router.post('/login', [
       if (err) throw err;
       res.json({ token });
     });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+router.get('/isAdmin', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (user.role === 'admin') {
+      return res.json({ isAdmin: true });
+    }
+    res.json({ isAdmin: false });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
