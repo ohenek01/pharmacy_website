@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true // Ensure this is set to true if username is necessary
   },
+  contact: {
+    type: Number,
+    required: true,
+  },
   role: {
     type: String,
     default: 'user'
