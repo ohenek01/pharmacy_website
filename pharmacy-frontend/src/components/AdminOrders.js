@@ -16,9 +16,16 @@ const AdminOrders = () => {
       };
 
       try {
-        const res = await axios.get('/api/orders', config);
+        // Verify if the user is an admin
+        const adminRes = await axios.get('http://localhost:3000/api/auth/isAdmin', config);
+        if (!adminRes.data.isAdmin) {
+          return;
+        }
+        setIsAdmin(true);
+
+        // Fetch orders if the user is an admin
+        const res = await axios.get('http://localhost:3000/api/orders', config);
         setOrders(res.data);
-        setIsAdmin(res.data.length > 0 && res.data[0].user.role === 'admin')
       } catch (err) {
         console.error('Error fetching orders', err);
       }
