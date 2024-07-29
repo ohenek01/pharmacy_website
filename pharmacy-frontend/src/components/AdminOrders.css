@@ -17,4 +17,100 @@
     list-style-type: none;
     padding: 0;
   }
-  
+  .container-order {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logoutbtn {
+    float: right;
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logoutbtn:hover {
+    background-color: #d32f2f;
+}
+
+.card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sectcard {
+    margin-bottom: 20px;
+}
+
+.pendingbtn {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.space {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.input-texts {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.order-id,
+.customer,
+.total {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.confirm-container {
+    display: flex;
+    gap: 10px;
+}
+
+.confirm-btn,
+.cancelbtn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-btn {
+    background-color: #333;
+    color: white;
+}
+
+.confirm-btn:hover {
+    background-color: #000;
+}
+
+.cancelbtn {
+    background-color: #f44336;
+    color: white;
+}
+
+.cancelbtn:hover {
+    background-color: #d32f2f;
+}
