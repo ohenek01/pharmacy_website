@@ -16,6 +16,7 @@ router.post('/register', [
   check('name', 'Name is required').not().isEmpty(),
   check('email', 'Please include a valid email').isEmail(),
   check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
+  check('contact', 'Please enter your 10 digit phone number').isLength({length: 10}),
   check('username', 'Username is required').not().isEmpty()
 ], async (req, res) => {
   const errors = validationResult(req);
@@ -24,7 +25,7 @@ router.post('/register', [
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { name, email, password, username } = req.body;
+  const { name, email, password, contact, username } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -33,7 +34,7 @@ router.post('/register', [
       return res.status(400).json({ msg: 'User already exists' });
     }
 
-    user = new User({ name, email, password, username });
+    user = new User({ name, email, password, contact, username });
 
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
