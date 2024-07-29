@@ -14,6 +14,7 @@ import SignUp from './components/SignUp';
 import Checkout from './components/CheckoutScreen';
 
 
+
 import ProtectedRoute from './components/ProtectedRoutes';
 
 
@@ -25,7 +26,7 @@ function App() {
         <Routes>
 
           <Route path="/" element={<Home />} />
-=======
+
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
 
           <Route path="/products" element={<ProductList />} />

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { useCart } from './context/cartContext';
 import './Productdetails.css'; // Importing the CSS file for styling
-import './Home.css';
+import './Home.css'
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -81,7 +81,7 @@ const ProductDetails = () => {
         <h1 className="product-title">{product.name}</h1>
         <p className="product-description">{product.description}</p>
         <p className="product-price">${product.price}</p>
-        <img src={`http://localhost:3000/images/${product.image}`} alt={product.name} className="product-image" />
+        <img src={`http://localhost:3000/images/${product.image}`} alt={product.title} className="product-image" />
         <input className='quantity-box' type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min="1" />
         <button onClick={() => addToCart(product, quantity)} className='add-to-cart-btn'>Add to Cart</button>
       </div>

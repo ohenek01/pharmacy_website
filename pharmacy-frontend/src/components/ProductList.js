@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './ProductList.css'; // Importing the CSS file
+import './ProductList.css'; 
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -58,7 +58,7 @@ const ProductList = () => {
           {products.map(product => (
             <li key={product._id} className="product-item">
               <Link to={`/products/${product._id}`} className="product-link">
-                <img src={`http://localhost:3000/images/${product.image}`} alt={product.name} className="product-image" />
+                <img src={`http://localhost:3000/images/${product.image}`} alt={product.title} className="product-image" />
                 <div className="product-info">
                   <h2 className="product-title">{product.name}</h2>
                   <p className="product-description">{product.description}</p>
