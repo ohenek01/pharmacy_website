@@ -16,7 +16,7 @@ router.post('/register', [
   check('name', 'Name is required').not().isEmpty(),
   check('email', 'Please include a valid email').isEmail(),
   check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
-  check('contact', 'Please enter your 10 digit phone number').isLength({length: 10}),
+  check('contact', 'Please enter your 10 digit phone number').isLength({min: 10, max: 10}),
   check('username', 'Username is required').not().isEmpty()
 ], async (req, res) => {
   const errors = validationResult(req);

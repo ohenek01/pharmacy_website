@@ -13,7 +13,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = { name, email, password, username };
+    const payload = { name, email, password, contact, username };
     console.log('Sending payload:', payload);  // Log the payload
 
     try {
