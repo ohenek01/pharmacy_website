@@ -9,15 +9,23 @@ const OrderSchema = new mongoose.Schema({
   items: [
     {
       product: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product', // Assuming you have a Product model
         required: true
       },
       quantity: {
         type: Number,
         required: true
+      },
+      image: {
+        type: String
       }
     }
   ],
+  totalAmount: {
+    type: Number,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now
@@ -25,3 +33,4 @@ const OrderSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Order', OrderSchema);
+

@@ -8,30 +8,40 @@ const { check, validationResult } = require('express-validator');
 // Place an order
 router.post(
   '/',
-  [auth, check('items', 'Items are required').not().isEmpty()],
+  [
+    auth,
+    check('items', 'Items are required').not().isEmpty(),
+    check('totalAmount', 'Total amount is required').not().isEmpty()
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { items } = req.body;
+    const { items, totalAmount } = req.body;
 
     try {
+      if (!Array.isArray(items) || items.length === 0) {
+        return res.status(400).json({ errors: [{ msg: 'Items must be a non-empty array' }] });
+      }
+
       const newOrder = new Order({
         user: req.user.id,
-        items
+        items,
+        totalAmount
       });
 
       const order = await newOrder.save();
 
       res.json(order);
     } catch (err) {
-      console.error(err.message);
+      console.error('Server error:', err.message);
       res.status(500).send('Server error');
     }
   }
 );
+
 
 // Get orders for a user
 router.get('/user-orders', auth, async (req, res) => {
