@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css"; // Importing the CSS file
 
 const Home = () => {
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem(username);
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, );
   return (
     <div className="container">
       {/* Navigation Bar */}

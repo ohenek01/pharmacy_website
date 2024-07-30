@@ -8,6 +8,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [contact, setContact] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -68,6 +69,13 @@ const SignUp = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <input
+          type="number"
+          placeholder="Phone Number"
+          value={contact}
+          onChange={(e) => setContact(e.target.value)}
           required
         />
         <input
