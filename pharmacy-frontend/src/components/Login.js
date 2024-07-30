@@ -11,8 +11,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting login form with:", { email }); // Debugging statement
-    try {
+      try {
       const res = await axios.post('http://localhost:3000/api/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
       const tokenPayload = JSON.parse(atob(res.data.token.split('.')[1]));
