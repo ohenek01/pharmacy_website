@@ -53,7 +53,7 @@ const AdminOrders = () => {
           <div key={order._id} className="container-order">
             <main className="card">
               <section className="sectcard">
-                <h2 className="pendingbtn">Pending Orders</h2>
+                <h2 className="pendingbtn">Pending Orders.</h2>
                 <div className="space">
                   <div className="input-texts">
                     <div>
