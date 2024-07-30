@@ -15,7 +15,7 @@ const Home = () => {
     <div className="container">
       {/* Navigation Bar */}
       <nav className="navbar">
-        <div className="brand">License Over the Counter Pharmacy</div>
+        <div className="brand">License Over the Counter Pharmacy.</div>
         <ul className="nav-links">
         <li>
             <Link to="/login" className="nav-link">Login</Link>
