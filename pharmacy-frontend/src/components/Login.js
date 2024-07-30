@@ -6,6 +6,7 @@ import './Login.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -22,6 +23,7 @@ const Login = () => {
       }
     } catch (err) {
       console.error('Login failed', err);
+      setError('Incorrect email or password');
     }
   };
 
@@ -50,6 +52,7 @@ const Login = () => {
     <div className="login-container">
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
+        {error && <p className="error-message">{error}</p>}
         <input
           type="email"
           placeholder="Email"
