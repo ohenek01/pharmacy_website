@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 module.exports = async (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
+  const token = req.headers['authorization']?.replace('Bearer ', '');
+
 
   if (!token) {
     console.log('No token provided'); // Debug log

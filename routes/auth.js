@@ -181,15 +181,25 @@ router.post('/login', [
 
 router.get('/isAdmin', auth, async (req, res) => {
   try {
+    if (!req.user) {
+      return res.status(401).json({ msg: 'No user found' });
+    }
+
     const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(401).json({ msg: 'User not found' });
+    }
+
     if (user.role === 'admin') {
       return res.json({ isAdmin: true });
     }
+    
     res.json({ isAdmin: false });
   } catch (err) {
-    console.error(err.message);
+    console.error('Server error:', err.message);
     res.status(500).send('Server error');
   }
 });
+
 
 module.exports = router;

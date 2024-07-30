@@ -13,7 +13,7 @@ const AdminOrders = () => {
       const token = localStorage.getItem('token');
       const config = {
         headers: {
-          'x-auth-token': token,
+          'Authorization': `Bearer ${token}`,
         },
       };
 
@@ -58,13 +58,13 @@ const AdminOrders = () => {
                   <div className="input-texts">
                     <div>
                       <p className="order-id">Order #{order._id}</p>
-                      <p className="customer">Customer: {order.user.email}</p>
-                      <p className="total">Total: ${order.total.toFixed(2)}</p>
+                      <p className="customer">Customer: {order.user.email} </p>
+                      <p className="total">Total: ${order.totalAmount ? order.totalAmount.toFixed(2): 'N/A'}</p>
                     </div>
                     <ul>
                       {order.items.map((item, index) => (
                         <li key={index}>
-                          {item.product} - Quantity: {item.quantity}
+                          {item.title} - Quantity: {item.quantity}
                         </li>
                       ))}
                     </ul>
