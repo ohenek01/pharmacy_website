@@ -38,7 +38,7 @@ const Home = () => {
       {/* Main Content */}
       <main className="main">
         <section className="landing-page">
-          <h1>PHARMACY LANDING PAGE</h1>
+          <h1>Welcome!!</h1>
           <p>
           Welcome to License Over the Counter Pharmacy! 
           We are dedicated to providing you with the highest quality medications and healthcare products. 
